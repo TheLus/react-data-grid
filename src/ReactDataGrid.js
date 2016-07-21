@@ -77,6 +77,13 @@ const ReactDataGrid = React.createClass({
     draggableHeaderCell: React.PropTypes.func
   },
 
+  setSort(column, direction) {
+    this.setState({
+      sortColumn: column,
+      sortDirection: direction
+    });
+  },
+
   getDefaultProps(): {enableCellSelect: boolean} {
     return {
       enableCellSelect: false,
