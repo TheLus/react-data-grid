@@ -1,5 +1,5 @@
 {
-  "name": "@thelus/react-data-grid",
+  "name": "react-data-grid",
   "version": "1.0.14",
   "description": "Data grid for React",
   "main": "src/index.js",
