@@ -77,11 +77,18 @@ const Grid = React.createClass({
   },
 
   render(): ?ReactElement {
+    const divProps = Object.keys(this.props).reduce((props, key) => {
+      if (['rowGetter', 'columns', 'columnMetrics', 'minHeight', 'totalWidth', 'headerRows', 'rowHeight', 'rowRenderer', 'emptyRowsView', 'expandedRows', 'selectedRows', 'rowSelection', 'rowsCount', 'onRows', 'sortColumn', 'sortDirection', 'rowOffsetHeight', 'onViewportKeydown', 'onViewportKeyup', 'onViewportDragStart', 'onViewportDragEnd', 'onViewportDoubleClick', 'onColumnResize', 'onSort', 'cellMetaData', 'rowKey', 'rowScrollTimeout', 'getSubRowDetails', 'draggableHeaderCell', 'getValidFilterValues', 'rowGroupRenderer'].indexOf(key) >= 0) {
+        return props;
+      }
+      props[key] = this.props[key];
+      return props;
+    }, {});
     let headerRows = this.props.headerRows || [{ref: 'row'}];
     let EmptyRowsView = this.props.emptyRowsView;
 
     return (
-      <div {...this.props} style={this.getStyle()} className="react-grid-Grid">
+      <div {...divProps} style={this.getStyle()} className="react-grid-Grid">
         <Header
           ref="header"
           columnMetrics={this.props.columnMetrics}

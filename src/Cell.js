@@ -20,7 +20,6 @@ const Cell = React.createClass({
     selectedColumn: React.PropTypes.object,
     height: React.PropTypes.number,
     tabIndex: React.PropTypes.number,
-    ref: React.PropTypes.string,
     column: React.PropTypes.shape(ExcelColumn).isRequired,
     value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number, React.PropTypes.object, React.PropTypes.bool]).isRequired,
     isExpanded: React.PropTypes.bool,
@@ -449,6 +448,13 @@ const Cell = React.createClass({
   },
 
   render() {
+    const divProps = Object.keys(this.props).reduce((props, key) => {
+      if (['rowIdx', 'idx', 'selectedColumn', 'ref', 'column', 'isExpanded', 'isRowSelected', 'cellMetaData', 'handleDragStart', 'cellControls', 'rowData', 'forceUpdate', 'expandableOptions', 'formatter'].indexOf(key) >= 0) {
+        return props;
+      }
+      props[key] = this.props[key];
+      return props;
+    }, {});
     let style = this.getStyle();
 
     let className = this.getCellClass();
@@ -464,7 +470,7 @@ const Cell = React.createClass({
     let events = this.getEvents();
 
     return (
-      <div {...this.props} className={className} style={style}   {...events}>
+      <div {...divProps} className={className} style={style}   {...events}>
         {cellContent}
         {dragHandle}
       </div>

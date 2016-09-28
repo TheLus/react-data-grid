@@ -829,6 +829,13 @@ const ReactDataGrid = React.createClass({
   },
 
   render() {
+    const gridProps = Object.keys(this.props).reduce((props, key) => {
+      if (['headerRowHeight', 'minWidth', 'enableRowSelect', 'onRowUpdated', 'toolbar', 'enableCellSelect', 'onFilter', 'onCellCopyPaste', 'onCellsDragged', 'onAddFilter', 'onGridSort', 'onDragHandleDoubleClick', 'onGridRowsUpdated', 'onRowSelect', 'onClearFilters', 'cellNavigationMode', 'onCellSelected', 'onCellDeSelected', 'onCellExpand', 'enableDragAndDrop', 'onRowExpandToggle', 'onRowClick', 'onGridKeyUp', 'onGridKeyDown', 'rowActionsCell', 'minColumnWidth', 'columnEquality'].indexOf(key) >= 0) {
+        return props;
+      }
+      props[key] = this.props[key];
+      return props;
+    }, {});
     let cellMetaData = {
       selected: this.state.selected,
       dragged: this.state.dragged,
@@ -869,7 +876,7 @@ const ReactDataGrid = React.createClass({
         <div className="react-grid-Main">
           <BaseGrid
             ref="base"
-            {...this.props}
+            {...gridProps}
             rowKey={this.props.rowKey}
             headerRows={this.getHeaderRows()}
             columnMetrics={this.state.columnMetrics}

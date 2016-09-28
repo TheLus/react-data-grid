@@ -42,6 +42,10 @@ const HeaderRow = React.createClass({
 
   mixins: [ColumnUtilsMixin],
 
+  componentWillMount() {
+    this._headerCells = {};
+  },
+
   shouldComponentUpdate(nextProps: {width: ?(number | string); height: number; columns: Array<ExcelColumn>; style: ?HeaderRowStyle; onColumnResize: ?any}): boolean {
     return (
       nextProps.width !== this.props.width
@@ -117,7 +121,7 @@ const HeaderRow = React.createClass({
       let HeaderCell = column.draggable ? this.props.draggableHeaderCell : BaseHeaderCell;
       let cell = (
         <HeaderCell
-          ref={i}
+          ref={(c) => this._headerCells[i] = c}
           key={i}
           height={this.props.height}
           column={column}
@@ -140,12 +144,19 @@ const HeaderRow = React.createClass({
   setScrollLeft(scrollLeft: number) {
     this.props.columns.forEach( (column, i) => {
       if (column.locked) {
-        this.refs[i].setScrollLeft(scrollLeft);
+        this._headerCells[i].setScrollLeft(scrollLeft);
       }
     });
   },
 
   render(): ?ReactElement {
+    const divProps = Object.keys(this.props).reduce((props, key) => {
+      if (['columns', 'onColumnResize', 'onSort', 'onColumnResizeEnd', 'sortColumn', 'sortDirection', 'cellRenderer', 'headerCellRenderer', 'filterable', 'onFilterChange', 'resizing', 'onScroll', 'rowType', 'draggableHeaderCell', 'getValidFilterValues'].indexOf(key) >= 0) {
+        return props;
+      }
+      props[key] = this.props[key];
+      return props;
+    }, {});
     let cellsStyle = {
       width: this.props.width ? (this.props.width + getScrollbarSize()) : '100%',
       height: this.props.height,
@@ -156,7 +167,7 @@ const HeaderRow = React.createClass({
 
     let cells = this.getCells();
     return (
-      <div {...this.props} className="react-grid-HeaderRow" onScroll={this.props.onScroll}>
+      <div {...divProps} className="react-grid-HeaderRow" onScroll={this.props.onScroll}>
         <div style={cellsStyle}>
           {cells}
         </div>
