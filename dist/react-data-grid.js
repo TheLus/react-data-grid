@@ -871,6 +871,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return this.props.cellRenderer(props);
 	  },
 	  render: function render() {
+	    var _this3 = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['columns', 'row', 'cellRenderer', 'cellMetaData', 'isSelected', 'idx', 'expandedRows', 'extraClasses', 'forceUpdate', 'subRowDetails', 'isRowHovered'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this3.props[key];
+	      return props;
+	    }, {});
 	    var className = joinClasses('react-grid-Row', 'react-grid-Row--' + (this.props.idx % 2 === 0 ? 'even' : 'odd'), {
 	      'row-selected': this.props.isSelected,
 	      'row-context-menu': this.isContextMenuDisplayed()
@@ -884,7 +893,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var cells = this.getCells();
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, { className: className, style: style, onDragEnter: this.handleDragEnter }),
+	      _extends({}, divProps, { className: className, style: style, onDragEnter: this.handleDragEnter }),
 	      React.isValidElement(this.props.row) ? this.props.row : cells
 	    );
 	  }
@@ -1060,7 +1069,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    selectedColumn: React.PropTypes.object,
 	    height: React.PropTypes.number,
 	    tabIndex: React.PropTypes.number,
-	    ref: React.PropTypes.string,
 	    column: React.PropTypes.shape(ExcelColumn).isRequired,
 	    value: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number, React.PropTypes.object, React.PropTypes.bool]).isRequired,
 	    isExpanded: React.PropTypes.bool,
@@ -1434,6 +1442,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    );
 	  },
 	  render: function render() {
+	    var _this = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['rowIdx', 'idx', 'selectedColumn', 'ref', 'column', 'isExpanded', 'isRowSelected', 'cellMetaData', 'handleDragStart', 'cellControls', 'rowData', 'forceUpdate', 'expandableOptions', 'formatter'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this.props[key];
+	      return props;
+	    }, {});
 	    var style = this.getStyle();
 
 	    var className = this.getCellClass();
@@ -1454,7 +1471,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, { className: className, style: style }, events),
+	      _extends({}, divProps, { className: className, style: style }, events),
 	      cellContent,
 	      dragHandle
 	    );
@@ -2649,7 +2666,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.removeEventListener('touchmove', this.onMouseMove);
 	  },
 	  render: function render() {
-	    return React.createElement('div', _extends({}, this.props, {
+	    var _this = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['component'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this.props[key];
+	      return props;
+	    }, {});
+	    return React.createElement('div', _extends({}, divProps, {
 	      onMouseDown: this.onMouseDown,
 	      onTouchStart: this.onMouseDown,
 	      className: 'react-grid-HeaderCell__draggable' }));
@@ -2741,12 +2767,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  render: function render() {
+	    var _this = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['rowGetter', 'columns', 'columnMetrics', 'minHeight', 'totalWidth', 'headerRows', 'rowHeight', 'rowRenderer', 'emptyRowsView', 'expandedRows', 'selectedRows', 'rowSelection', 'rowsCount', 'onRows', 'sortColumn', 'sortDirection', 'rowOffsetHeight', 'onViewportKeydown', 'onViewportKeyup', 'onViewportDragStart', 'onViewportDragEnd', 'onViewportDoubleClick', 'onColumnResize', 'onSort', 'cellMetaData', 'rowKey', 'rowScrollTimeout', 'getSubRowDetails', 'draggableHeaderCell', 'getValidFilterValues', 'rowGroupRenderer'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this.props[key];
+	      return props;
+	    }, {});
 	    var headerRows = this.props.headerRows || [{ ref: 'row' }];
 	    var EmptyRowsView = this.props.emptyRowsView;
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, { style: this.getStyle(), className: 'react-grid-Grid' }),
+	      _extends({}, divProps, { style: this.getStyle(), className: 'react-grid-Grid' }),
 	      React.createElement(Header, {
 	        ref: 'header',
 	        columnMetrics: this.props.columnMetrics,
@@ -3014,6 +3049,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  render: function render() {
+	    var _this2 = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['columnMetrics', 'totalWidth', 'headerRows', 'sortColumn', 'sortDirection', 'onSort', 'onColumnResize', 'onScroll', 'draggableHeaderCell', 'getValidFilterValues'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this2.props[key];
+	      return props;
+	    }, {});
 	    var className = joinClasses({
 	      'react-grid-Header': true,
 	      'react-grid-Header--resizing': !!this.state.resizing
@@ -3022,7 +3066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, { style: this.getStyle(), className: className }),
+	      _extends({}, divProps, { style: this.getStyle(), className: className }),
 	      headerRows
 	    );
 	  }
@@ -3216,6 +3260,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  mixins: [ColumnUtilsMixin],
 
+	  componentWillMount: function componentWillMount() {
+	    this._headerCells = {};
+	  },
 	  shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
 	    return nextProps.width !== this.props.width || nextProps.height !== this.props.height || nextProps.columns !== this.props.columns || !shallowEqual(nextProps.style, this.props.style) || this.props.sortColumn !== nextProps.sortColumn || this.props.sortDirection !== nextProps.sortDirection;
 	  },
@@ -3267,44 +3314,62 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	  },
 	  getCells: function getCells() {
+	    var _this = this;
+
 	    var cells = [];
 	    var lockedCells = [];
-	    for (var i = 0, len = this.getSize(this.props.columns); i < len; i++) {
-	      var column = this.getColumn(this.props.columns, i);
-	      var _renderer = this.getHeaderRenderer(column);
-	      if (column.key === 'select-row' && this.props.rowType === 'filter') {
+
+	    var _loop = function _loop(i, len) {
+	      var column = _this.getColumn(_this.props.columns, i);
+	      var _renderer = _this.getHeaderRenderer(column);
+	      if (column.key === 'select-row' && _this.props.rowType === 'filter') {
 	        _renderer = React.createElement('div', null);
 	      }
-	      var _HeaderCell = column.draggable ? this.props.draggableHeaderCell : BaseHeaderCell;
-	      var cell = React.createElement(_HeaderCell, {
-	        ref: i,
+	      var HeaderCell = column.draggable ? _this.props.draggableHeaderCell : BaseHeaderCell;
+	      var cell = React.createElement(HeaderCell, {
+	        ref: function ref(c) {
+	          return _this._headerCells[i] = c;
+	        },
 	        key: i,
-	        height: this.props.height,
+	        height: _this.props.height,
 	        column: column,
 	        renderer: _renderer,
-	        resizing: this.props.resizing === column,
-	        onResize: this.props.onColumnResize,
-	        onResizeEnd: this.props.onColumnResizeEnd
+	        resizing: _this.props.resizing === column,
+	        onResize: _this.props.onColumnResize,
+	        onResizeEnd: _this.props.onColumnResizeEnd
 	      });
 	      if (column.locked) {
 	        lockedCells.push(cell);
 	      } else {
 	        cells.push(cell);
 	      }
+	    };
+
+	    for (var i = 0, len = this.getSize(this.props.columns); i < len; i++) {
+	      _loop(i, len);
 	    }
 
 	    return cells.concat(lockedCells);
 	  },
 	  setScrollLeft: function setScrollLeft(scrollLeft) {
-	    var _this = this;
+	    var _this2 = this;
 
 	    this.props.columns.forEach(function (column, i) {
 	      if (column.locked) {
-	        _this.refs[i].setScrollLeft(scrollLeft);
+	        _this2._headerCells[i].setScrollLeft(scrollLeft);
 	      }
 	    });
 	  },
 	  render: function render() {
+	    var _this3 = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['columns', 'onColumnResize', 'onSort', 'onColumnResizeEnd', 'sortColumn', 'sortDirection', 'cellRenderer', 'headerCellRenderer', 'filterable', 'onFilterChange', 'resizing', 'onScroll', 'rowType', 'draggableHeaderCell', 'getValidFilterValues'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this3.props[key];
+	      return props;
+	    }, {});
 	    var cellsStyle = {
 	      width: this.props.width ? this.props.width + getScrollbarSize() : '100%',
 	      height: this.props.height,
@@ -3316,7 +3381,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var cells = this.getCells();
 	    return React.createElement(
 	      'div',
-	      _extends({}, this.props, { className: 'react-grid-HeaderRow', onScroll: this.props.onScroll }),
+	      _extends({}, divProps, { className: 'react-grid-HeaderRow', onScroll: this.props.onScroll }),
 	      React.createElement(
 	        'div',
 	        { style: cellsStyle },
@@ -3527,6 +3592,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    rowActionsCell: React.PropTypes.func
 	  },
 
+	  setSort: function setSort(column, direction) {
+	    this.setState({
+	      sortColumn: column,
+	      sortDirection: direction
+	    });
+	  },
 	  getDefaultProps: function getDefaultProps() {
 	    return {
 	      enableCellSelect: false,
@@ -4267,6 +4338,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }
 	  },
 	  render: function render() {
+	    var _this5 = this;
+
+	    var gridProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['headerRowHeight', 'minWidth', 'enableRowSelect', 'onRowUpdated', 'toolbar', 'enableCellSelect', 'onFilter', 'onCellCopyPaste', 'onCellsDragged', 'onAddFilter', 'onGridSort', 'onDragHandleDoubleClick', 'onGridRowsUpdated', 'onRowSelect', 'onClearFilters', 'cellNavigationMode', 'onCellSelected', 'onCellDeSelected', 'onCellExpand', 'enableDragAndDrop', 'onRowExpandToggle', 'onRowClick', 'onGridKeyUp', 'onGridKeyDown', 'rowActionsCell', 'minColumnWidth', 'columnEquality'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this5.props[key];
+	      return props;
+	    }, {});
 	    var cellMetaData = {
 	      selected: this.state.selected,
 	      dragged: this.state.dragged,
@@ -4310,7 +4390,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        { className: 'react-grid-Main' },
 	        React.createElement(BaseGrid, _extends({
 	          ref: 'base'
-	        }, this.props, {
+	        }, gridProps, {
 	          rowKey: this.props.rowKey,
 	          headerRows: this.getHeaderRows(),
 	          columnMetrics: this.state.columnMetrics,

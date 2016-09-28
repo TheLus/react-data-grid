@@ -5333,7 +5333,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	    window.removeEventListener('touchmove', this.onMouseMove);
 	  },
 	  render: function render() {
-	    return React.createElement('div', _extends({}, this.props, {
+	    var _this = this;
+
+	    var divProps = Object.keys(this.props).reduce(function (props, key) {
+	      if (['component'].indexOf(key) >= 0) {
+	        return props;
+	      }
+	      props[key] = _this.props[key];
+	      return props;
+	    }, {});
+	    return React.createElement('div', _extends({}, divProps, {
 	      onMouseDown: this.onMouseDown,
 	      onTouchStart: this.onMouseDown,
 	      className: 'react-grid-HeaderCell__draggable' }));
