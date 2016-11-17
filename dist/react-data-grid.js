@@ -5065,13 +5065,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 
 	  getSortByText: function getSortByText() {
-	    var unicodeKeys = {
-	      ASC: '9650',
-	      DESC: '9660',
-	      NONE: '20',
-	      undefined: '20'
+	    var TextMap = {
+	      ASC: String.fromCharCode('9650'),
+	      DESC: String.fromCharCode('9660'),
+	      NONE: '',
+	      undefined: ''
 	    };
-	    return String.fromCharCode(unicodeKeys[this.props.sortDirection]);
+	    return TextMap[this.props.sortDirection];
 	  },
 
 	  render: function render() {
